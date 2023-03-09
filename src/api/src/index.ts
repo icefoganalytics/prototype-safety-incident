@@ -7,8 +7,6 @@ import { API_PORT, FRONTEND_URL, APPLICATION_NAME } from "./config";
 import { doHealthCheck } from "./utils/health-check";
 import { userRouter, incidentRouter } from "./routes";
 import { CreateMigrationRoutes } from "./data";
-import { RequiresData } from "./middleware";
-import { EmailService } from "./services";
 
 const app = express();
 app.use(express.json({ limit: "25mb" })); // for parsing application/json
@@ -40,20 +38,12 @@ app.use(
   })
 );
 
-app.use(RequiresData);
-
-CreateMigrationRoutes(app);
+//CreateMigrationRoutes(app);
 
 app.get("/api/healthCheck", (req: Request, res: Response) => {
   // app.get("/api/healthCheck",  (req: Request, res: Response) => {
   doHealthCheck(req, res);
 });
-
-app.get("/test", async (req, res) =>  {
-  let email = new EmailService();
-  await email.sendEmail("tesing@testing.com", "tesing@testing.com", "Test email subject", "SLDKFJ");
-  res.send("DONE")
-})
 
 app.use("/api/incident", incidentRouter);
 app.use("/api/user", userRouter);

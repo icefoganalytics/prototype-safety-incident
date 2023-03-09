@@ -1,12 +1,11 @@
 import express, { Request, Response } from "express";
 import { param } from "express-validator";
-import { RequiresData, ReturnValidationErrors } from "../middleware";
+import { ReturnValidationErrors } from "../middleware";
 import { UserService } from "../services";
 import _ from "lodash";
 import { checkJwt, loadUser } from "../middleware/authz.middleware";
 
 export const userRouter = express.Router();
-userRouter.use(RequiresData);
 userRouter.use(checkJwt, loadUser);
 
 const db = new UserService();
