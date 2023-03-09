@@ -6,13 +6,13 @@
 
 <script lang="ts">
 export default {
-  data: function () {
-    return {};
-  },
   methods: {
     login() {
+      let target = window.location.pathname;
+      if (target == "/sign-in") target = "/incident";
+
       this.$auth.loginWithRedirect({
-        appState: { target: window.location.pathname },
+        appState: { target },
       });
     },
   },

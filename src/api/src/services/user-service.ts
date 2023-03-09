@@ -3,12 +3,14 @@ import { sqldb } from "../data";
 
 export class UserService {
   async create(user: User): Promise<any> {
+    return undefined;
     let existing = await sqldb("users").where({ email: user.email }).count("email as cnt");
     if (existing[0].cnt > 0) return undefined;
     return await sqldb("users").insert(cleanForCreate(user));
   }
 
   async update(email: string, item: any) {
+    return undefined;
     return sqldb("users").where({ email }).update(cleanForUpdate(item));
   }
 
@@ -17,10 +19,12 @@ export class UserService {
   }
 
   async getByEmail(email: string): Promise<User | undefined> {
+    return undefined;
     return sqldb("users").where({ email }).first();
   }
 
   async getBySub(sub: string): Promise<User | undefined> {
+    return undefined;
     return sqldb("users").where({ sub }).first();
   }
 

@@ -27,7 +27,7 @@
                   below.
                 </h6>
 
-                <LoginButton />
+                <Login-Button />
               </div>
             </v-col>
           </v-row>
@@ -38,11 +38,8 @@
 </template>
 
 <script lang="ts">
-import LoginButton from "@/components/LoginButton.vue";
-
 export default {
   name: "SignIn",
-  components: { LoginButton },
   data: () => ({}),
   mounted() {
     if (this.$auth.isAuthenticated.value) this.$router.push("/incident");
